@@ -11,7 +11,8 @@ function getComputerChoice() {
     return choice;
 }
 
-function playRound(player, computer) {
+function playRound(play, computer) {
+    let player = play.toLowerCase();
     let result = "Tie!";
     if (player === "rock") {
         if (computer === "paper") {
@@ -32,4 +33,32 @@ function playRound(player, computer) {
             result = "You lose! Rock beats scissors.";
         }
     }
+    return result;
 }
+
+function game() {
+    playerCount = 0;
+    cpuCount = 0;
+    while (playerCount < 5 && cpuCount < 5) {
+        let play = prompt("Please choose Rock, Paper, or Scissors: ");
+        let cpu = getComputerChoice();
+        let result = playRound(play, cpu);
+        console.log(result);
+        if (result.length > 4) {
+            if (result.substring(0, 7) === "You win") {
+                playerCount++;
+            } else {
+                cpuCount++;
+            }
+        }
+    }
+    if (playerCount === 5) {
+        console.log("Victory! You were the first to 5 wins.");
+    } else {
+        console.log("Defeated! Computer was the first to 5 wins.");
+    }
+}
+
+let playerCount = 0;
+let cpuCount = 0;
+game();
