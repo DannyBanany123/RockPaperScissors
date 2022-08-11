@@ -14,13 +14,13 @@ function getComputerChoice() {
 function playRound(player, computer) {
     let play = player.toLowerCase();
     let result = "Tie!";
-    if (player === "rock") {
+    if (play === "rock") {
         if (computer === "paper") {
             result = "You lose! Paper beats rock.";
         } else if (computer === "scissors") {
             result = "You win! Rock beats scissors.";
         }
-    } else if (player === "paper") {
+    } else if (play === "paper") {
         if (computer === "scissors") {
             result = "You lose! Scissors beats paper."
         } else if (computer === "rock") {
@@ -50,14 +50,22 @@ function game(playerChoice) {
     }
 }
 
+function removeAnimate(choices) {
+    choices.forEach((choice) => {
+        choice.setAttribute("id", "unanimated");
+    });
+}
+
 let playerCount = 0;
 let cpuCount = 0;
 let pick = "";
 const choices = document.querySelectorAll(".buttons > div");
 choices.forEach((choice) => {
     choice.addEventListener("click", () => {
+        removeAnimate(choices);
         pick = choice.getAttribute("class");
-        choice.classList.add("animate");
+        choice.setAttribute("id", "animate");
+        console.log(pick);
         game(pick);
     });
 });
