@@ -40,7 +40,7 @@ function game(playerChoice) {
     let play = playerChoice;
     let cpu = getComputerChoice();
     let result = playRound(play, cpu);
-    console.log(result);
+    announceRound(play, cpu, result);
     if (result.length > 4) {
         if (result.substring(0, 7) === "You win") {
             playerCount++;
@@ -48,6 +48,16 @@ function game(playerChoice) {
             cpuCount++;
         }
     }
+    updateScore();
+    if (gameOver()) {
+        restartText();
+        body.appendChild(restart);
+    }
+
+}
+
+function gameOver() {
+    return (playerCount === 5 || cpuCount === 5);
 }
 
 function removeAnimate(choices) {
@@ -56,21 +66,63 @@ function removeAnimate(choices) {
     });
 }
 
+function announceRound(play, cpu, result) {
+    announce.textContent = `You chose ${play.toUpperCase()}, CPU chose ${cpu.toUpperCase()}`;
+    summary.textContent = result;
+}
+
+function updateScore() {
+    userScore.textContent = `Your score: ${playerCount}`;
+    cpuScore.textContent = `CPU's score: ${cpuCount}`;
+}
+
+function restartGame() {
+    playerCount = 0;
+    cpuCount = 0;
+    removeAnimate(choices);
+    announce.textContent = "First to 5 is the winner!";
+    summary.textContent = "Choose your weapon";
+    updateScore();
+    body.removeChild(restart);
+}
+
+function restartText() {
+    restart.textContent = "";
+    let again = " Click me to play again";
+    let winner = "";
+    if (playerCount === 5) {
+        winner = "Victory!";
+    } else {
+        winner = "Defeat!";
+    }
+    restart.textContent = winner + again;
+}
+
 let playerCount = 0;
 let cpuCount = 0;
 let pick = "";
+
+const announce = document.querySelector(".instructions");
+const summary = document.querySelector(".choose");
+const userScore = document.querySelector(".you");
+const cpuScore = document.querySelector(".cpu");
+
 const choices = document.querySelectorAll(".buttons > div");
 choices.forEach((choice) => {
     choice.addEventListener("click", () => {
-        removeAnimate(choices);
-        pick = choice.getAttribute("class");
-        choice.setAttribute("id", "animate");
-        console.log(pick);
-        game(pick);
+        // If either player has score of 5, disable click
+        if (gameOver()) {
+            return;
+        } else {
+            removeAnimate(choices);
+            pick = choice.getAttribute("class");
+            choice.setAttribute("id", "animate");
+            game(pick);
+        }
     });
 });
-if (playerCount === 5) {
-    console.log("Victory! You were the first to 5 wins.");
-} else if (cpuCount === 5) {
-    console.log("Defeated! Computer was the first to 5 wins.");
-}
+
+const body = document.querySelector("body");
+const restart = document.createElement("div");
+restart.setAttribute("class", "restart");
+restart.addEventListener("click", restartGame());

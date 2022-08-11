@@ -86,11 +86,13 @@ body {
     transform: scale(1.1) skew(-8deg);
     box-shadow: 8px 8px coral;
     border-style: solid;
-    border-color:black;
+    border-color:white;
     border-width: 4px;
     transition: 0.08s;
     margin-left: 12px;
     margin-bottom: 12px;
+    background-color: black;
+    color: white;
 }
 
 .score {
@@ -108,4 +110,19 @@ body {
     font-size: 30px;
     font-weight: 900;
     transform: skew(-6deg);
+}
+
+.restart {
+    transform: skew(-6deg);
+    margin-top: 6px;
+    font-size: 36px;
+    padding: 16px 36px;
+    background-color: coral;
+    font-weight: 1000;
+    color: white;
+}
+
+.restart:hover {
+    box-shadow: 0px 0px 12px white;
+    transform: scale(1.1) rotateX(10deg);
 }
