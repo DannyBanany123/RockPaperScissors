@@ -57,6 +57,7 @@ const choices = document.querySelectorAll(".buttons > div");
 choices.forEach((choice) => {
     choice.addEventListener("click", () => {
         pick = choice.getAttribute("class");
+        choice.classList.add("animate");
         game(pick);
     });
 });
