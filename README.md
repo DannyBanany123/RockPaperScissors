@@ -1,5 +1,7 @@
 # RockPaperScissors
 
+My first HTML, CSS, and JavaScript project.
+
 Program to play Rock Paper Scissors with the computer.
 
-Icons by Font Awesome
+Icons by <a href=https://fontawesome.com/>
