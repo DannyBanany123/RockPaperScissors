@@ -51,7 +51,7 @@ function game(playerChoice) {
     updateScore();
     if (gameOver()) {
         restartText();
-        body.appendChild(restart);
+        restart.style.display = "flex";
     }
 
 }
@@ -77,13 +77,13 @@ function updateScore() {
 }
 
 function restartGame() {
+    restart.style.display = "none";
     playerCount = 0;
     cpuCount = 0;
     removeAnimate(choices);
     announce.textContent = "First to 5 is the winner!";
     summary.textContent = "Choose your weapon";
     updateScore();
-    body.removeChild(restart);
 }
 
 function restartText() {
@@ -124,5 +124,8 @@ choices.forEach((choice) => {
 
 const body = document.querySelector("body");
 const restart = document.createElement("div");
+body.appendChild(restart);
 restart.setAttribute("class", "restart");
-restart.addEventListener("click", restartGame());
+restart.style.display = "none";
+const restartButton = document.querySelector(".restart");
+restartButton.addEventListener("click", restartGame);
