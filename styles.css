@@ -69,5 +69,29 @@ body {
     font-weight: 1000;
     background-color: white;
     padding: 20px;
-    border-radius: 12px;
+    transform: skew(-8deg);
+}
+
+.animate {
+    transform: scale(1.03) skew(-8deg);
+    box-shadow: 4px 4px coral;
+    border-style: solid;
+    border-color:black;
+    border-width: 4px;
+}
+
+.score {
+    display: flex;
+    gap: 24px;
+    padding: 20px 100px;
+    justify-content: space-between;
+}
+
+.you, .cpu {
+    color: white;
+    background-color: black;
+    padding: 24px 36px;
+    font-size: 30px;
+    font-weight: 900;
+    transform: skew(-6deg);
 }
