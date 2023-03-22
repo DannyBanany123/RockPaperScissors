@@ -1,6 +1,6 @@
 # RockPaperScissors
 
-First full-stack HTML/CSS/JavaScript project.
+First frontend HTML/CSS/JavaScript project.
 
 Program to play Rock Paper Scissors with the computer.
 
